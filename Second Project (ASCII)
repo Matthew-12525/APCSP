@@ -1,0 +1,281 @@
+"""
+IDEAS FOR PROJECT\/
+-Let user decide what character (number, symbol, space, or letter) *filled* and 
+and *empty* will be
+- Use the "len()" function to ensure the user enters the correct number of objects
+- Remind user not to type certain characters and/or numbers in order to make appropriate art
+"""
+import random
+facts = [
+"Dolphins sleep with one eye open", "Pandas poop most of what they eat", \
+"Alfred Hitchcock was frightened of eggs", "Pigs don't sweat", \
+"Squirrels are behind most power outages in the U.S.", \
+"The inventor of the Pringles can is now buried in one", \
+"Bumblebees can fly higher than Mount Everest", \
+"Scientists discovered an organism with a disappearing butt", \
+"Crying makes you feel happier"
+]
+#Source: https://bestlifeonline.com/weird-amazing-facts/
+random_fact = random.choice(facts)
+
+
+doneArting = False
+def zero():
+    validZero = False
+    while not validZero:
+        try:
+            scaleZero = int(input("How big do you want 0 to be? "))
+            while scaleZero < 2 or scaleZero > 14:
+                scaleZero = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validZero = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultZero = scaleZero * empty
+    filledMultZero = scaleZero * filled
+    for i in range(scaleZero//2):
+        print(emptyMultZero + filledMultZero * 4 + emptyMultZero)
+    for i in range(scaleZero * 3): #DOUBLES VERTICAL LENGTH
+        print(filledMultZero + emptyMultZero * 4 + filledMultZero)
+    for i in range(scaleZero//2):
+        print(emptyMultZero + filledMultZero * 4 + emptyMultZero)
+def one():
+    validOne = False
+    while not validOne:
+        try:
+            scaleOne = int(input("How big do you want 1 to be? "))
+            while scaleOne < 2 or scaleOne > 14:
+                scaleOne = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validOne = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultOne = scaleOne * empty
+    filledMultOne = scaleOne * filled
+    for i in range(scaleOne): #AFFECTS VERTICAL LENGTH
+        print(filledMultOne * 4 + emptyMultOne * 2) #AFFECTS HORIZONTAL LENGTH
+    for i in range(scaleOne):
+        print((emptyMultOne * 2) + filledMultOne * 2 + emptyMultOne * 2)
+    for i in range(scaleOne//2): #HALVES VERTICAL LENGTH
+        print(emptyMultOne * 2 + filledMultOne * 2 + emptyMultOne * 2)
+    for i in range(scaleOne):
+        print(filledMultOne * 6)
+def two():
+    validTwo = False
+    while not validTwo:
+        try:
+            scaleTwo = int(input("How big do you want 2 to be? "))
+            while scaleTwo < 2 or scaleTwo > 14:
+                scaleTwo = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validTwo = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultTwo = scaleTwo * empty
+    filledMultTwo = scaleTwo * filled
+    for i in range(scaleTwo//2):
+        print(filledMultTwo * 4)
+    for i in range(scaleTwo):
+        print(emptyMultTwo * 3 + filledMultTwo)
+    for i in range(scaleTwo//2):
+        print(filledMultTwo * 4)
+    for i in range(scaleTwo):
+        print(filledMultTwo + emptyMultTwo * 3)
+    for i in range(scaleTwo//2):
+        print(filledMultTwo * 4)
+def three():
+    validThree = False
+    while not validThree:
+        try:
+            scaleThree = int(input("How big do you want 3 to be? "))
+            while scaleThree < 2 or scaleThree > 14:
+                scaleThree = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validThree = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultThree = scaleThree * empty
+    filledMultThree = scaleThree * filled
+    for i in range(scaleThree):
+        print(filledMultThree * 5)
+    for i in range(scaleThree):
+        print(emptyMultThree * 3 + filledMultThree * 2)
+    for i in range(scaleThree):
+        print(filledMultThree * 5)
+    for i in range(scaleThree):
+        print(emptyMultThree * 3 + filledMultThree * 2)
+    for i in range(scaleThree):
+        print(filledMultThree * 5)
+def four():
+    validFour = False
+    while not validFour:
+        try:
+            scaleFour = int(input("How big do you want 4 to be? "))
+            while scaleFour < 2 or scaleFour > 14:
+                scaleFour = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validFour = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultFour = scaleFour * empty
+    filledMultFour = scaleFour * filled
+    for i in range(scaleFour *2):
+        print(filledMultFour + emptyMultFour * 2 + filledMultFour + emptyMultFour)
+    for i in range(scaleFour//2):
+        print(filledMultFour * 5)
+    for i in range(scaleFour):
+        print(emptyMultFour * 3 + filledMultFour + emptyMultFour)
+def five():
+    validFive = False
+    while not validFive:
+        try:
+            scaleFive = int(input("How big do you want 5 to be? "))
+            while scaleFive < 2 or scaleFive > 14:
+                scaleFive = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validFive = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultFive = scaleFive * empty
+    filledMultFive = scaleFive * filled
+    for i in range(scaleFive//2):
+        print(filledMultFive * 4)
+    for i in range(scaleFive):
+        print(filledMultFive + emptyMultFive * 3)
+    for i in range(scaleFive//2):
+        print(filledMultFive * 4)
+    for i in range(scaleFive):
+        print(emptyMultFive * 3 + filledMultFive)
+    for i in range(scaleFive//2):
+        print(filledMultFive * 4)
+def six():
+    validSix = False
+    while not validSix:
+        try:
+            scaleSix = int(input("How big do you want 6 to be? "))
+            while scaleSix < 2 or scaleSix > 14:
+                scaleSix = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validSix = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultSix = scaleSix * empty
+    filledMultSix = scaleSix * filled
+    for i in range(scaleSix):
+        print(filledMultSix * 7)
+    for i in range(scaleSix * 2):
+        print(filledMultSix * 2 + emptyMultSix * 5)
+    for i in range(scaleSix):
+        print(filledMultSix * 7)
+    for i in range(scaleSix * 2):
+        print(filledMultSix * 2 + emptyMultSix * 3 + filledMultSix * 2)
+    for i in range(scaleSix):
+        print(filledMultSix * 7)
+def seven():
+    validSeven = False
+    while not validSeven:
+        try:
+            scaleSeven = int(input("How big do you want 7 to be? "))
+            while scaleSeven < 2 or scaleSeven > 14:
+                scaleSeven = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validSeven = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultSeven = scaleSeven * empty
+    filledMultSeven = scaleSeven * filled
+    for i in range(scaleSeven//2):
+        print(filledMultSeven * 4)
+    for i in range(scaleSeven//2):
+        print(emptyMultSeven * 3 + filledMultSeven)
+    for i in range(scaleSeven//2):
+        print(emptyMultSeven * 2 + filledMultSeven + emptyMultSeven)
+    for i in range(scaleSeven//2):
+        print(emptyMultSeven * 1 + filledMultSeven + emptyMultSeven * 2)
+    for i in range(scaleSeven//2):
+        print(filledMultSeven + emptyMultSeven * 3)
+def eight():
+    validEight = False
+    while not validEight:
+        try:
+            scaleEight = int(input("How big do you want 8 to be? "))
+            while scaleEight < 2 or scaleEight > 14:
+                scaleEight = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validEight = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultEight = scaleEight * empty
+    filledMultEight = scaleEight * filled
+    for i in range(scaleEight//2):
+        print(emptyMultEight + filledMultEight * 2 + emptyMultEight)
+    for i in range(scaleEight):
+        print(filledMultEight + emptyMultEight * 2 + filledMultEight)
+    for i in range(scaleEight//2):
+        print(emptyMultEight + filledMultEight * 2 + emptyMultEight)
+    for i in range(scaleEight):
+        print(filledMultEight + emptyMultEight * 2 + filledMultEight)
+    for i in range(scaleEight//2):
+        print(emptyMultEight + filledMultEight * 2 + emptyMultEight)
+def nine():
+    validNine = False
+    while not validNine:
+        try:
+            scaleNine = int(input("How big do you want 9 to be? "))
+            while scaleNine < 2 or scaleNine > 14:
+                scaleNine = int(input("Give a number that's >= 2 but <= 14 ?! "))
+            validNine = True
+        except ValueError:
+            print("Give an appropriate number!")
+    emptyMultNine = scaleNine * empty
+    filledMultNine = scaleNine * filled
+    for i in range(scaleNine):
+        print(filledMultNine * 7)
+    for i in range(scaleNine * 2):
+        print(filledMultNine * 2 + emptyMultNine * 3 + filledMultNine * 2)
+    for i in range(scaleNine):
+        print(filledMultNine * 7)
+    for i in range(scaleNine * 2):
+        print(emptyMultNine * 5 + filledMultNine * 2)
+    for i in range(scaleNine):
+        print(filledMultNine* 7)
+print("This program prints out any number 1 through 9 using scales and 'spaces' \
+picked out by the user. Empty spaces are the space around a number, while filled \
+spaces are the actual number itself (if you chose 'M' for the filled space of the \
+number '1', 1 would be made of M)")
+print("")
+while doneArting == False:
+    empty  = input("What object do you want the empty space to be? ")
+    empty = empty[0]
+    filled = input("What object do you want the filled space to be? ")
+    filled = filled[0]
+    validNum = False
+    while not validNum:
+        try:
+            whichNum = int(input("Which number do you want to create? "))
+            validNum = True
+        except ValueError:
+            print("Give an appropriate number!")
+    while whichNum != 0 and whichNum != 1 and whichNum != 2 and whichNum != 3 and whichNum != 4 and whichNum != 5 and whichNum != 6 and whichNum != 7 and whichNum != 8 and whichNum != 9:
+        whichNum = int(input("Give an appropriate number! "))
+    if whichNum == 0:
+        zero() #MADE
+    elif whichNum == 1:
+        one() #MADE
+    elif whichNum == 2:
+        two() #MADE
+    elif whichNum == 3:
+        three() #MADE
+    elif whichNum == 4:
+        four() #MADE
+    elif whichNum == 5:
+        five() #MADE
+    elif whichNum == 6:
+        six() #MADE
+    elif whichNum == 7:
+        seven() #MADE
+    elif whichNum == 8:
+        eight() #MADE
+    else:
+        nine() #MADE
+    contOrNot = input("Do you want to continue arting or not ('Yes' or 'No'? ")
+    while contOrNot != "Yes" and contOrNot != "No":
+        contOrNot = input("Give an appropriate answer! ")
+    if contOrNot == "Yes":
+        doneArting = False
+    elif contOrNot == "No":
+        doneArting = True
+print("")
+print("Thanks for playing my project! Have a nice day/night :), and don't forget...")
+print(random_fact)
