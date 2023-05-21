@@ -1,0 +1,59 @@
+def list():
+    x = 0
+    y = 0
+    direction = 0
+    dictLocation = {}
+    my_string = "R5, R4, R2, L3, R1, R1, L4, L5, R3, L1, L1, R4, L2, R1, R4, R4, L2, L2, R4, L4, R1, R3, L3, L1, L2, R1, R5, L5, L1, L1, R3, R5, L1, R4, L5, R5, R1, L185, R4, L1, R51, R3, L2, R78, R1, L4, R188, R1, L5, R5, R2, R3, L5, R3, R4, L1, R2, R2, L4, L4, L5, R5, R4, L4, R2, L5, R2, L1, L4, R4, L4, R2, L3, L4, R2, L3, R3, R2, L2, L3, R4, R3, R1, L4, L2, L5, R4, R4, L1, R1, L5, L1, R3, R1, L2, R1, R1, R3, L4, L1, L3, R2, R4, R2, L2, R1, L5, R3, L3, R3, L1, R4, L3, L3, R4, L2, L1, L3, R2, R3, L2, L1, R4, L3, L5, L2, L4, R1, L4, L4, R3, R5, L4, L1, L1, R4, L2, R5, R1, R1, R2, R1, R5, L1, L3, L5, R2"
+    #my_string = "R5, L5, R5, R3"
+    my_list = my_string.split(", ")
+    print(my_list)
+    for i in my_list:
+        if i[0] == "R":
+            direction += 90
+        else:
+            direction -= 90
+        direction %= 360
+        if direction == 0:
+            for i in range(int(i[1:])):
+                y += 1
+                if str((x,y)) in dictLocation:
+                    print("found", x,y)
+                dictLocation[str((x,y))] = 1
+        elif direction == 90:
+            for i in range(int(i[1:])):
+                x += 1
+                if str((x,y)) in dictLocation:
+                    print("found", x,y)
+                dictLocation[str((x,y))] = 1
+        elif direction == 180:
+            for i in range(int(i[1:])):
+                y -= 1
+                if str((x,y)) in dictLocation:
+                    print("found", x,y)
+                dictLocation[str((x,y))] = 1
+        elif direction == 270:
+            for i in range(int(i[1:])):
+                x -= 1
+                if str((x,y)) in dictLocation:
+                    print("found", x,y)
+                dictLocation[str((x,y))] = 1
+        
+        print(i,x,y)
+    print(x,y)
+    print(abs(x) + abs(y))
+    return
+list()
+"""
+Store inside variable
+"""
+
+# L1 100 -115
+# L1 100 -115
+"""
+
+for i in range(dist):
+    x += 1
+    dictLocation[x,y] = 1
+    if str(x,y) in dictLocation:
+        print(x,y)
+"""
