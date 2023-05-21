@@ -1,0 +1,48 @@
+calorieList = []
+file = open('puzzleInput')
+file = file.read()
+newFile = file.split("\n")
+print(newFile)
+elfCalories = 0
+
+
+for value in newFile:
+    if value == '':
+        calorieList.append(elfCalories)
+        elfCalories = 0
+    else:
+        calValInt = int(value)
+        elfCalories += calValInt
+    
+    
+calorieList.sort()
+
+print(calorieList)
+maxElfCalories1 = calorieList[-1]
+maxElfCalories2 = calorieList[-2]
+maxElfCalories3 = calorieList[-3]
+
+# """
+#     if elfCalories > maxElfCalories1:
+#         maxElfCalories1 = elfCalories
+#         #print("Max one" + str(maxElfCaloriesOne))
+#     elif elfCalories > maxElfCalories2:
+#         maxElfCalories2 = elfCalories
+#         #print("Max two" + str(maxElfCaloriesTwo))
+#     elif elfCalories > maxElfCalories3:
+#         maxElfCalories3 = elfCalories
+#         #print("Max three" + str(maxElfCaloriesThree))
+# """
+    
+print(maxElfCalories1, maxElfCalories2, maxElfCalories3)
+maxElfCaloriesTotal = maxElfCalories3 + maxElfCalories2 + maxElfCalories1
+print(maxElfCaloriesTotal)
+
+# print("Top 3 SHOULD be:\n 10000\n 11000\n 24000")
+# # for i in range(len(file)):
+# #     if file[i] == " ":
+# #         file = file.split()
+# # print(file)
+# #file = [file.split() if item == " " else item for item in file]
+
+# #ANSWER TOO HIGH: 204876#
