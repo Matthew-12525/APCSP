@@ -1,0 +1,38 @@
+class Vec2:
+    x : int
+    y : int
+    
+    def __init__(self, x : int, y : int):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        return Vec2(self.x + other.x, self.y + other.y)
+        
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+class Vec3(Vec2):
+    z : int
+    
+    def __init__(self, x : int, y : int):
+        self.x = x
+        self.y = y
+        self.z = x * y
+    
+    """def __init__(self, x : int, y : int, z : int):
+        self.x = x
+        self.y = y
+        self.z = z"""
+    
+    def __add__(self, other):
+        return Vec3(self.x + other.x, self.y + other.y, self.z + other.z)
+        
+    def __str__(self):
+        return f"({self.x}, {self.y}, {self.z})"
+
+classArray = [Vec2, Vec3]
+myVec2 = classArray[0](2, 3)
+myVec3 = classArray[1](2, 3)
+
+print(myVec2, myVec3)
