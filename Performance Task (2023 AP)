@@ -1,0 +1,291 @@
+#Technical premise of the program
+"""
+Make a questionnare comprised of two functions that switch
+using an if/else statement which asks one person one thing
+and asks the next person questions tailored to that of the first 
+person.
+"""
+import random
+#Booleans, lists, and variables
+youNameGood = [False]
+friendNameGood = [False]
+youName = [""]
+friendName = [""]
+youAnswersInf = []
+youAnswersF = []
+friendAnswersInf = []
+friendAnswersF = []
+customQuestion = []
+correctIncorrect = []
+birthdayFormat = "(Enter birthday in this format: mm/dd/yy)"
+fillCode = "###############################################"
+functionRun = 0
+#Defining the questionnare function
+def questionnare(youName, friendName,functionRun):
+    global youAnswersInf, youAnswersF, youCustomQuestion, questionType
+    if functionRun == 0:
+        print('Welcome to "How Well Do You Know Your Friend"! In this game, you \n\
+and another friend will be asked to answer a series of questions that \n\
+will show how much you know about each other.\n*****\n')
+        print("*****\nINSTRUCTIONS: \n\
+1. First,",youName[0],"will be asked several questions about themselves, with the \n\
+last question being a custom one that they get to ask",friendName[0]+". \n\
+2. Next,",friendName[0],"will be asked to answer the questions about",youName[0]+". \n\
+3. Lastly, the results of "+friendName[0]+"'s questions will be shown, both by \n\
+an in-depth look at each question and whether or not \n\
+"+friendName[0]+" got that question correct, in addition to a score out of 100.\n*****\n")
+        print("\n*****\nLet's begin!")
+        print("*****\n1)\n")
+        birthdayGood = False
+        while not birthdayGood:
+            try:
+                birthday = input("Enter your birthday\n"+birthdayFormat+": ")
+            except ValueError:
+                print("Please give an appropriate answer!")
+            birthdayConfirm = input("You've stated that your birthday is "+birthday+".\n\
+Please confirm that this your birthday and in the correct format\n\
+with a 'yes' or 'no': ")
+            while birthdayConfirm != "yes" and birthdayConfirm != "no":
+                birthdayConfirm = input("Give an appropriate response: ")
+            if birthdayConfirm == "yes":
+                print("Alright then! On to the next question...")
+                youAnswersInf.append(youName[0]+"'s birthday is "+birthday)
+                youAnswersF.append(birthday)
+                birthdayGood = True
+            else:
+                continue
+        print("*****\n2)\n")
+        favNumGood = False
+        while not favNumGood:
+            favNumCheck = input("Enter your favorite number: ")
+            if favNumCheck.isnumeric():
+                favNum = int(favNumCheck)
+                print("Roger that! Here's the next question...")
+                youAnswersInf.append(youName[0]+"'s favorite number is "+str(favNum))
+                youAnswersF.append(str(favNum))
+                favNumGood = True
+            else:
+                print("Give an appropriate number! ")
+                continue
+        print("*****\n3)\n")
+        favColorGood = False
+        favColor = input("Enter your favorite color: ")
+        while not favColorGood:
+            if not favColor.isalpha():
+                favColor = input("Give an appropriate response: ")
+            else:
+                favColor = favColor.lower()
+                favColorGood = True
+        print("Good to hear! Let's move on with the following question...")
+        youAnswersInf.append(youName[0]+"'s favorite color is "+favColor)
+        youAnswersF.append(favColor)
+        print("*****\n4)\n")
+        favCreatureGood = False
+        favCreature = input("Enter your favorite creature\n\
+(NOTE: 'Creature' is used to describe both animals and insects,\n\
+AND leave no spaces between your each word in the creature's name): ")
+        while not favCreatureGood:
+            if not favCreature.isalpha():
+                favCreature = input("Give an appropriate response: ")
+            else:
+                favCreature = favCreature.lower()
+                favCreatureGood = True
+        print("Interesting! Well here is the last question: ")
+        youAnswersInf.append(youName[0]+"'s favorite creature is a(n) "+favCreature)
+        youAnswersF.append(favCreature)
+        print("*****\n5)\n")
+        responseGood = False
+        questionType = input("Will the question require a\n\
+'INT' response, 'STR' response, or a mix of 'BOTH'? ")
+        while not responseGood:
+            while questionType != 'INT' and questionType != 'STR'\
+            and questionType != 'BOTH':
+                questionType = input("Answer appropriately either 'INT', \n\
+'STR', or 'BOTH': ")
+            if questionType == 'INT':
+                question = input("Enter the integer-based question \n\
+you will ask (AND add a space after the question or statement): ")
+                while not responseGood:
+                    responseCheck = input("Enter the answer to your question: ")
+                    if responseCheck.isnumeric():
+                        response = int(responseCheck)
+                        responseGood = True
+                    else:
+                        print("Give an appropriate answer!")
+                        continue
+            elif questionType == 'STR':
+                question = input("Enter the string-based question \n\
+you will ask (AND add a space after the question or statement): ")
+                while not responseGood:
+                    responseCheck = input("Enter the answer to your question: ")
+                    if responseCheck.isalpha():
+                        response = responseCheck.lower()
+                        responseGood = True
+                    else:
+                        print("Give an appropriate answer!")
+                        continue
+            else:
+                question = input("Enter the question you will ask \n\
+(AND add a space after the question or statement): ")
+                while not responseGood:
+                    try:
+                        response = input("Enter the answer to your question: ")
+                        responseGood = True
+                    except ValueError:
+                        print("Give an appropriate answer!")
+        customQuestion.append("Here is "+youName[0]+"'s question: "+str(question))
+        customQuestion.append("Here is the answer to "+youName[0]+"'s question: "+str(response))
+        youAnswersF.append(str(response))
+        print("*****\n\n*****")
+        print("To conceal your answers from being seen, type '#' as \n\
+many times as you need to clear it from the visible console!")
+        print("After the code has been hidden, type '*' to stop asking \n\
+for user input!")
+        while True:
+            hideCode = input("Type either '#' or '*': ")
+            while hideCode != "#" and hideCode != "*":
+                hideCode = input("Type either '#' or '*': ")
+            if hideCode == "#":
+                for i in range(8):
+                    print(fillCode)
+            elif hideCode == "*":
+                break    
+    else:
+        print("*****\n")
+        print("Now give "+friendName[0]+" control so that they can \n\
+answer your questions...")
+        print("*****\n1)\n")
+        birthdayGood = False
+        while not birthdayGood:
+            try:
+                birthday = input("Enter "+youName[0]+"'s birthday\n"+birthdayFormat+": ")
+            except ValueError:
+                print("Please give an appropriate answer!")
+            birthdayConfirm = input("You've stated that "+youName[0]+"'s birthday is "+birthday+". \n\
+Please confirm that this in the correct format\n\
+with a 'yes' or 'no': ")
+            while birthdayConfirm != "yes" and birthdayConfirm != "no":
+                birthdayConfirm = input("Give an appropriate response: ")
+            if birthdayConfirm == "yes":
+                print("Alright then! On to the next question...")
+                friendAnswersInf.append(friendName[0]+" answered with this: "+birthday)
+                friendAnswersF.append(birthday)
+                birthdayGood = True
+            else:
+                continue
+        print("*****\n2)\n")
+        favNumGood = False
+        while not favNumGood:
+            favNumCheck = input("Enter "+youName[0]+"'s favorite number: ")
+            if favNumCheck.isnumeric():
+                favNum = int(favNumCheck)
+                print("Roger that! Here's the next question...")
+                friendAnswersInf.append(friendName[0]+" answered with this: "+str(favNum))
+                friendAnswersF.append(str(favNum))
+                favNumGood = True
+            else:
+                print("Give an appropriate number! ")
+                continue
+        print("*****\n3)\n")
+        favColorGood = False
+        favColor = input("Enter "+youName[0]+"'s favorite color: ")
+        while not favColorGood:
+            if not favColor.isalpha():
+                favColor = input("Give an appropriate response: ")
+            else:
+                favColor = favColor.lower()
+                favColorGood = True
+        print("Good to hear! Let's move on with the following question...")
+        friendAnswersInf.append(friendName[0]+" answered with this: "+favColor)
+        friendAnswersF.append(favColor)
+        print("*****\n4)\n")
+        favCreatureGood = False
+        favCreature = input("Enter "+youName[0]+"'s favorite creature\n\
+(NOTE: 'Creature' is used to describe both animals and insects,\n\
+AND leave no spaces between your each word in the creature's name): ")
+        while not favCreatureGood:
+            if not favCreature.isalpha():
+                favCreature = input("Give an appropriate response: ")
+            else:
+                favCreature = favCreature.lower()
+                favCreatureGood = True
+        print("Interesting! Well here is the last question: ")
+        friendAnswersInf.append(friendName[0]+" answered with this: "+favCreature)
+        friendAnswersF.append(favCreature)
+        print("*****\n5)\n")
+        responseGood = False
+        print(customQuestion[0]+"\n\
+Here is a possible hint to help in answering the question:")
+        if questionType == 'INT':
+            while not responseGood:
+                responseCheck = input("(your answer should only be an integer)\n\
+What is the answer? ")
+                if responseCheck.isnumeric():
+                    response = int(responseCheck)
+                    responseGood = True
+                else:
+                    print("Give an appropriate answer!")
+                    continue
+        elif questionType == 'STR':
+            while not responseGood:
+                responseCheck = input("(your answer should only be a string)\n\
+What is the answer? ")
+                if responseCheck.isalpha():
+                    response = responseCheck.lower()
+                    responseGood = True
+                else:
+                    print("Give an appropriate answer!")
+                    continue
+        else:
+            while not responseGood:
+                try:
+                    response = input("(your answer will include both integers and strings)\n\
+What is the answer? ")
+                    responseGood = True
+                except ValueError:
+                    print("Give an appropriate answer!")
+        friendAnswersInf.append(friendName[0]+" answered with this: "+str(response))
+        friendAnswersF.append(str(response))
+        print("At last, the questionnare is finished! Now time to tally the\n\
+results and see how well "+friendName[0]+" knows "+youName[0]+"...")
+        print("*****\n\n*****")
+#Asking users for their names
+name = youName
+nameGood = youNameGood
+for i in range(2):
+    while not nameGood[0]:
+        try:
+            name[0] = input("What is the name of the person who wants to quiz\n\
+(or the other participant's name if this is the second time being asked)? ")
+            nameGood[0] = True
+        except ValueError:
+            print("Please enter an appropriate name!")
+    name = friendName
+    nameGood = friendNameGood
+print("*****")
+#Calling the questionnare function
+questionnare(youName, friendName, functionRun=0)
+questionnare(youName, friendName, functionRun=1)
+scoreTracker = 0
+#Printing the results
+for i in range(len(youAnswersF)):
+    if youAnswersF[i] == friendAnswersF[i]:
+        correctIncorrect.append("Correct")
+        scoreTracker += 1
+    else:
+        correctIncorrect.append("Incorrect")
+for i in range(4):
+    print("Here are the results for "+str(i+1)+"):")
+    print(youAnswersInf[i])
+    print(friendAnswersInf[i])
+    print("Result: "+str(correctIncorrect[i]))
+print("Here are the results for "+str(5)+"):")
+print(customQuestion[1])
+print(friendAnswersInf[4])
+print("Result: "+str(correctIncorrect[4]))
+scorePercentage =str(int(scoreTracker/len(youAnswersF)*100))+"%"
+print("Here is the results that were answered correctly\n\
+expressed as a percentage: "+scorePercentage)
+print("*****\n\n*****")
+print("I'm glad that you took this questionnare, and hope that you and\n\
+your friend learned a lot about each other!\nHave a great day!")
