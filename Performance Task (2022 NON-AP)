@@ -1,0 +1,291 @@
+"""
+Creates a personality test that uses various (and frankly unfair)
+factors that will translate into certain personalities/characteristics.
+USES A BUNCH OF BOOLEANS
+"""
+
+import random
+
+#Lists
+
+genericResponses = ["What an interesting answer...", "I wasn't expecting that response...", \
+"I hope you know what you're doing...", "I personally would've chosen the other one", \
+"I agree with you on that one", "Are you sure about that one? I hope so..."]
+
+starSigns = ["Pisces", "Taurus", "Scorpio", "Cancer", "Leo", "Virgo", "Capricorn", "Sagittarius"]
+
+persStoredList = []
+#BOOLEANS (13 overall)
+
+isMean = False #USED
+isTimid = False #USED
+isSmart = False #USED
+isFunny = False #USED
+isAnnoying = False #USED
+#(The ridiculous ones)
+isStrong = False #USED
+isLikelyToNeverFindLove = False #USED
+#isSecretlyALizard = False #USED
+#isGoingToHarvard = False #USED 
+isFanOfJustinBieber = False #USED
+isGoingToFailComputerScience = False #USED
+isLibra = False #USED
+isSunFallingGemini = False #USED 
+
+#BOOLEANS (13 overall)
+
+#SHORTCUTS 
+giveCorrectAnswer = "Give an appropriate response!\n(HINT: type in *exactly* what's in single quotations): "
+giveBigSpace = "          \n++++++++++\n          "
+giveLittleSpace = "          "
+knockKnockJokeTemplate = "YOU: Knock-knock? \nCRUSH: Who's there?"
+chickenCrossRoadTemplate = "YOU: Why did the chicken cross the road?"
+#The Personality Test function!
+def personalityTest(name):
+    global perStoredList, isLikelyToNeverFindLove, isGoingToFailComputerScience
+    print("Hello",name + "! Today we're going to see what kind of person you are\n\
+based on various factors that are derived from your answers to the \nfollowing questions...\n\
+Goodluck!")
+    #First question!
+    print(giveBigSpace + "\n1.")
+    smartNot = input("First of all, would you rather fight a 'chicken-sized horse' or a 'horse-sized chicken'? ")
+    while smartNot != "chicken-sized horse" and smartNot != "horse-sized chicken": 
+        smartNot = input(giveCorrectAnswer)
+    if smartNot == "chicken-sized horse": isSmart = True
+    else: isSmart = False
+    persStoredList.append("(1.) Are you smart? " + str(isSmart))
+    print(random.choice(genericResponses))
+    #Second question!
+    print(giveLittleSpace + "\n2.")
+    successfulMeanInput = False
+    meanNotText = "Because your birthdate obviously determines your whole personality, \n\
+what month were you born? "
+    print(meanNotText)
+    while not successfulMeanInput:
+        meanNot = input("Enter '1'-'12' for the month: ")
+        if meanNot.isnumeric():
+            checkMeanInput = int(meanNot)
+        else:
+            print(giveCorrectAnswer)
+            continue
+        if checkMeanInput >= 0 and checkMeanInput > 12:
+            print(giveCorrectAnswer)
+            continue
+        if checkMeanInput <= 3: isMean = True
+        elif checkMeanInput <= 6: isMean = False
+        elif checkMeanInput <= 9: isMean = True
+        else: isMean = False
+        successfulMeanInput = True
+    persStoredList.append("(2.) Are you mean? " + str(isMean))
+    print(genericResponses[1])
+    #Third question!
+    print(giveLittleSpace + "\n3.")
+    print("Imagine you're surrounded in a valley on both sides by carnivorous animals ready to tear \n\
+you to shreds at a moment's notice. To your left, there's a very hungry tiger, and to your right, an \
+equally starved lion. Now you do have a tranquilizer rifle, but it only has \none dart. \
+You can decide to sedate either predator and run in that direction, but the other animal \
+will begin chasing after you.")
+    compSciFailNot = input("Do you sedate the 'tiger' or the 'lion'? ")
+    while compSciFailNot != "tiger" and compSciFailNot != "lion": compSciFailNot = input(giveCorrectAnswer)
+    if compSciFailNot == "tiger": isGoingToFailComputerScience = True
+    else: isGoingToFailComputerScience = False
+    persStoredList.append("(3.) Are you going to fail Computer Science? " + str(isGoingToFailComputerScience))
+    print(random.choice(genericResponses))
+    #Fourth question!
+    print(giveLittleSpace + "\n4.")
+    print("Okay okay, you seem like you're starting to wonder why these questions seem to have no rhyme or \n\
+reason to them, so I'd like to ask you right now whether or not you'd like to continue this test.")
+    findLoveNot = input("Do you want to 'end' the test or 'continue'? ")
+    while findLoveNot != "end" and findLoveNot != "continue": findLoveNot = input(giveCorrectAnswer)
+    if findLoveNot == "end":
+        print("Pff... lame. YOU THOUGHT YOU COULD RUSH THIS!?") 
+        isLikelyToNeverFindLove = True
+        persStoredList.append("(4.) Are you likely to never find love? " + str(isLikelyToNeverFindLove))
+        testThing = False
+        return
+    else: 
+        print("That's what I like to hear! :)")
+        isLikelyToNeverFindLove = False
+        persStoredList.append("(4.) Are you likely to never find love? " + str(isLikelyToNeverFindLove))
+    #Fifth question!
+    print(giveLittleSpace + "\n5.")
+    print("Let's say that you're at a movie theater trying to find the right movie to watch with your \n\
+friends. There are only two options - 'The Python Code Snatcher: A Confusingly-horrifying Thriller', \n\
+and 'How C# Met C++: A Complex Love Story'.")
+    timidNot = input("Which movie do you decide to watch? ")
+    while timidNot != "The Python Code Snatcher: A Confusingly-horrifying Thriller" and \
+    timidNot != "How C# Met C++: A Complex Love Story": timidNot = input(giveCorrectAnswer)
+    if timidNot == "How C# Met C++: A Complex Love Story": isTimid = True
+    else: isTimid = False
+    persStoredList.append("(5.) Are you timid? " + str(isTimid))
+    print(random.choice(genericResponses))
+    #Sixth question!
+    print(giveLittleSpace + "\n6.")
+    print("You're talking to your crush that you've had since middle school, and want to ask her \n\
+out, but before you do that, have decided that a nice joke will help improve your chances in \n\
+winning her over. You've settled on either a 'knock-knock' joke or a 'why did the chicken cross \n\
+the road?' joke.")
+    funnyNot = input("Which joke do you use? ")
+    while funnyNot != "knock-knock" and funnyNot != "why did the chicken cross the road?":
+        funnyNot = input(giveCorrectAnswer)
+    print(random.choice(genericResponses))
+    print("Here's how the conversation goes: ")
+    goodBadJoke = random.randint(1,2)
+    if funnyNot == "knock-knock":
+        if goodBadJoke == 1:
+            isFunny = False
+            print(knockKnockJokeTemplate)
+            print("YOU: Who \nCRUSH: Who who? \nYOU: Who hoot, I'm an owl! :)")
+            print("CRUSH: Please leave :| \nYOU: Okay... :(")
+        else:
+            isFunny = True
+            print(knockKnockJokeTemplate)
+            print("YOU: Ida \nCRUSH: Ida who? \nYOU: Surely it's pronounced Idaho?")
+            print("CRUSH: HAHAHA that was really funny! \nYOU: Thank you :)")
+            print("YOU: Wanna go out? \nCRUSH: Sure! :)")
+    else:
+        if goodBadJoke == 1:
+            isFunny = False
+            print(chickenCrossRoadTemplate)
+            print("CRUSH: Why? \nYOU: To get to the other side faster! ")
+            print("CRUSH: That... wasn't funny, please leave me alone \nYOU: Okay... :(")
+        else:
+            isFunny = True
+            print(chickenCrossRoadTemplate)
+            print("CRUSH: Why? \nYOU: To 'bock' traffic! ")
+            print("CRUSH: HAHAHA that was hilarious! \nYOU: Thank you! ")
+            print("YOU: Hey do you wanna go out sometime? \nCRUSH: Definitely! :)")
+    persStoredList.append("(6.) Are you funny? " + str(isFunny))
+    #Seventh question!
+    print(giveLittleSpace + "\n7.")
+    print("Pretend that you've just arrived at the gym and want to find a bench to workout at. \n\
+You find that all of the benches have people using them, except for one that someone is using to sleep on. \n\
+Obviously, this isn't what gym benches are meant for, so you decide that if you're going to get any bench, \n\
+it's going to have to be this one.")
+    annoyingStrongNot = input("Do you 'ask' the person to get off the bench, or 'wait' for someone else \n\
+to stop using a bench? ")
+    while annoyingStrongNot != "ask" and annoyingStrongNot != "wait": annoyingStrongNot = input(giveCorrectAnswer)
+    if annoyingStrongNot == "ask": 
+        isAnnoying = True 
+        isStrong = True
+    else: 
+        isAnnoying = False 
+        isStrong = False
+    print(random.choice(genericResponses))
+    persStoredList.append("(7a.) Are you annoying? " + str(isAnnoying))
+    persStoredList.append("(7b.) Are you strong? " + str(isStrong))
+    #Eighth question!
+    print(giveLittleSpace + "\n8.")
+    print("While in the car with your friends, an argument breaks out on whether or not the radio station should \n\
+stay on an old song by Phil Collins, or be switched to a station that's playing the hit new song by Katy Perry. \n\
+Half of your friends vote to 'keep' the station as is, and the other half vote to 'switch' the station.")
+    justinBieberFanNot = input("Which option do you choose to vote? ")
+    while justinBieberFanNot != "keep" and justinBieberFanNot != "switch": justinBieberFanNot = input(giveCorrectAnswer)
+    if justinBieberFanNot == "keep": isFanOfJustinBieber = False
+    else: isFanOfJustinBieber = True
+    print(random.choice(genericResponses))
+    persStoredList.append("(8.) Are you a fan of Justin Bieber? " + str(isFanOfJustinBieber))
+    #Ninth question!
+    print(giveLittleSpace + "\n9.")
+    print("Ok, now to get down to what matters the most:")
+    libraNot = input("Do you pronounce tomatoes as [toe]-['MA']-[toes] or as [toe]-['MAY']-[toes]? ")
+    while libraNot != "MA" and libraNot != "MAY": libraNot = input(giveCorrectAnswer)
+    randomLibra = random.randint(1,2)
+    if libraNot == "MA":
+        print(genericResponses[3])
+        if randomLibra == 1: isLibra = False
+        else: isLibra = True
+    else:
+        print(genericResponses[4])
+        if randomLibra == 1: isLibra = False
+        else: isLibra = True
+    persStoredList.append("(9.) Are you actually a Libra? " + str(isLibra))
+    #Tenth (and last) question!
+    print(giveLittleSpace + "\n10.")
+    print("Wow! You've made it to the last question, congrats! Now for your last extremely easy question: ")
+    sunFallingGeminiNot = input("Are you a bigger fan of 'DC' or 'Marvel'? ")
+    while sunFallingGeminiNot != "DC" and sunFallingGeminiNot != "Marvel": sunFallingGeminiNot = input(giveCorrectAnswer)
+    if sunFallingGeminiNot == "DC": 
+        isSunFallingGemini = False
+        print("Pff, that's 100% without a doubt something a " + random.choice(starSigns) + " would say")
+    else:
+        isSunFallingGemini = True
+        print(genericResponses[4])
+    persStoredList.append("(10.) Are you in fact a sun falling Gemini? " + str(isSunFallingGemini))
+    
+    print(giveBigSpace)
+    
+    return persStoredList
+#The totally nonsensical without-a-choice function!
+def goingToHarvardLizard(isGoingToHarvard, isSecretlyALizard):
+    harvardBool = isGoingToHarvard
+    lizardBool = isSecretlyALizard
+    return harvardBool, lizardBool
+#Unrelated function that's only needed to satisfy requirements
+def math(numOne, numTwo):
+    goodInput = False
+    correctNum = numOne + numTwo
+    while not goodInput:
+        askQuestion = input("What's " + str(numOne) + " + " + str(numTwo) + "? ")
+        if askQuestion.isnumeric():
+            checkInput = int(askQuestion)
+        else: 
+            print("GIVE A NUMBER! ")
+            continue
+        if checkInput == correctNum:
+            print("Correct!")
+            goodInput = True
+#Calling the Personality Test function!
+nameGood = False
+while not nameGood:
+    try:
+        name = input("Please enter your name: ")
+        nameGood = True
+    except ValueError:
+        print("Give an appropriate name!")
+personalityTest(name)
+#Calling the ridiculous function!
+harvardNot = random.randint(1,4)
+if harvardNot == 1:
+    isGoingToHarvard, isSecretlyALizard = goingToHarvardLizard(False, False)
+elif harvardNot == 2:
+    isGoingToHarvard, isSecretlyALizard = goingToHarvardLizard(True, False)
+elif harvardNot == 3:
+    isGoingToHarvard, isSecretlyALizard = goingToHarvardLizard(False, True)
+else:
+    isGoingToHarvard, isSecretlyALizard = goingToHarvardLizard(True, True)
+persStoredList.append("Are you going to Harvard? " + str(isGoingToHarvard))
+persStoredList.append("Are you secretly a lizard? " + str(isSecretlyALizard))
+#Giving results of test (and randomized ridiculous function)!
+print("After meticulously analyzing your responses to our questions, we've determined that you \n\
+possess the following qualities and will experience the following things in the future: ")
+for item in persStoredList:
+    print(item)
+print(name + ", I really hope you found out the right information that'll help you in life going forward. \n\
+Please remember to share this extremely accurate and precise personality test with your family and friends \n\
+so that they too can experience enlightenment. \n\
+Have a great day!")
+print(giveBigSpace)
+print("*****FOR LEGAL REASONS***** \n\
+THIS TEST IS NOT ACTUALLY 100% ACCURATE. INFORMATION RECEIVED FROM HERE SHOULD NOT BE USED TO INFLUENCE \n\
+REAL-LIFE DECISIONS OR OUTCOMES.")
+if isSecretlyALizard == True or isLikelyToNeverFindLove == True or isGoingToHarvard == True or \
+isGoingToFailComputerScience == True:
+    print("TAKE SPECIAL NOTE OF THE FOLLOWING INFORMATION WHICH HAVE/HAS INFLUENCED PREVIOUS USERS IN THE PAST:")
+if isGoingToFailComputerScience == True: 
+    print("- YOU MIGHT NOT FAIL COMPUTER SCIENCE, BUT TO INCREASE YOUR CHANCES OF PASSING, MAKE SURE TO \n\
+BE NICE TO JASUN AND LISTEN TO HIS ADVICE, BE EXTRA NICE TO A CERTAIN STUDENT, TAKE NOTES, ASK FOR HELP, AND FOR \n\
+THE LOVE OF GOD, *DO* *YOUR* *WORK*")
+if isLikelyToNeverFindLove == True:
+    print("- YOU'LL PROBABLY STILL FIND LOVE IF YOU STOP SPENDING TIME DOING DUMB QUIZZES LIKE THIS")
+if isGoingToHarvard == True:
+    print("- PLEASE DO NOT ONLY APPLY TO HARVARD. YOU HAVE A 5 PERCENT CHANCE OF GETTING IN. THINK ABOUT THAT")
+if isSecretlyALizard == True:
+    print("- NO, YOU'RE NOT ACTUALLY A LIZARD")
+print(" \n \n \n \n \n \n")
+print("..... Super Secret Questions .....")
+math(1, 2)
+print("You're getting smarter")
+math(3, 4)
+isSmart = True
+print("Are you smart? " + str(isSmart))
