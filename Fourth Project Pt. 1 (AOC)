@@ -1,0 +1,33 @@
+#This commented-out section is what I used for the first part of the puzzle
+'''
+newList = []
+file = open('AOC')
+code = file.read()
+puzzleInput = code.split("\n")
+print(puzzleInput)
+totalSum = 0
+for item in puzzleInput:
+    withoutX = item.split("x")
+    newList = [int(withoutX[0]) * int(withoutX[1]), \
+    int(withoutX[1]) * int(withoutX[2]), int(withoutX[0]) * int(withoutX[2])]
+    newListSides = (int(withoutX[0]) * int(withoutX[1]))*2 + (int(withoutX[1]) * int(withoutX[2]))*2 + (int(withoutX[0]) * int(withoutX[2]))*2
+    minOneInt = min(newList) + newListSides
+    totalSum += minOneInt
+    print(totalSum)
+'''
+#This un-commented-out section is what I used for the second part of the puzzle
+newList = []
+file = open('AOC')
+code = file.read()
+puzzleInput = code.split("\n")
+print(puzzleInput)
+totalSum = 0
+for item in puzzleInput:
+    withoutX = item.split("x")
+    newList = [int(withoutX[0]) *2, int(withoutX[1]) *2, int(withoutX[2]) *2]
+    newOtherMultiplication = int(withoutX[0]) * int(withoutX[1]) * int(withoutX[2])
+    minOneInt = min(newList)
+    removal = newList.remove(min(newList))
+    minTwoInt = min(newList)
+    totalSum += (minOneInt + minTwoInt) + newOtherMultiplication
+    print(totalSum)
